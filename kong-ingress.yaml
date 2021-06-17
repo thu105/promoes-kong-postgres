@@ -6,6 +6,9 @@ metadata:
   labels:
     app: ingress-kong
 spec:
+  selector:
+    matchLabels:
+      app: ingress-kong
   template:
     spec:
       initContainers:
@@ -29,6 +32,3 @@ spec:
           value: postgres
         - name: KONG_PG_PASSWORD
           value: kong
-    selector:
-      matchLabels:
-        app: ingress-kong
