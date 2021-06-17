@@ -29,6 +29,6 @@ spec:
           value: postgres
         - name: KONG_PG_PASSWORD
           value: kong
-      selector:
-        matchLabels:
-          app: ingress-kong
+    selector:
+      matchLabels:
+        app: ingress-kong
