@@ -4,15 +4,16 @@ metadata:
   name: ingress-kong
   namespace: kong
   labels:
-    app: ingress-kong
+    app: ingress-kong-postgres
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: ingress-kong
+      app: ingress-kong-postgres
   template:
     metadata:
       labels:
-        app: ingress-kong
+        app: ingress-kong-postgres
     spec:
       initContainers:
       - name: wait-for-migrations
