@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: ingress-kong
   namespace: kong
+  label:
+    app: ingress-kong
 spec:
   template:
     spec:
@@ -27,3 +29,6 @@ spec:
           value: postgres
         - name: KONG_PG_PASSWORD
           value: kong
+      selector:
+        matchLabels:
+          app: ingress-kong
