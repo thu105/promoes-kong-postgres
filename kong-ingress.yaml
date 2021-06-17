@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ingress-kong
   namespace: kong
-  label:
+  labels:
     app: ingress-kong
 spec:
   template:
