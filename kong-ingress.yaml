@@ -10,6 +10,9 @@ spec:
     matchLabels:
       app: ingress-kong
   template:
+    metadata:
+      labels:
+        app: ingress-kong
     spec:
       initContainers:
       - name: wait-for-migrations
