@@ -15,9 +15,9 @@ spec:
         - kong migrations bootstrap
         env:
         - name: KONG_PG_PASSWORD
-          value: kong
+          value: @KONG_PG_PASSWORD@
         - name: KONG_PG_HOST
-          value: postgres
+          value: kong-postgres
         - name: KONG_PG_PORT
           value: "5432"
         image: kong:2.4
@@ -30,7 +30,7 @@ spec:
           sleep 1; done
         env:
         - name: KONG_PG_HOST
-          value: postgres
+          value: kong-postgres
         - name: KONG_PG_PORT
           value: "5432"
         image: busybox
