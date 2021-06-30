@@ -40,12 +40,12 @@ substitutions:
   _GKE_CLUSTER: gke-cluster-1
   _GKE_LOCATION: us-central1-c
   _K8S_YAML_PATH: config
-  _K8S_APP_NAME: kong-api-gateway-1
+  _K8S_APP_NAME: kong-gateway
   _K8S_NAMESPACE: kong
   _OUTPUT_BUCKET_PATH: gs://cloudbuild-config-bucket/kong-config
 options:
   substitution_option: 'ALLOW_LOOSE'
-tags: [$_K8S_APP_NAME']
+tags: [$_K8S_APP_NAME]
 
 availableSecrets:
   secretManager:
