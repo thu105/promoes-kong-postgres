@@ -35,14 +35,14 @@ images:
 - '$_IMAGE_NAME:$_IMAGE_VERSION'
 substitutions:
   _DOCKERFILE_PATH: Dockerfile
-  _IMAGE_NAME:
-  _IMAGE_VERSION:
-  _GKE_CLUSTER:
-  _GKE_LOCATION:
-  _K8S_YAML_PATH:
-  _K8S_APP_NAME:
-  _K8S_NAMESPACE:
-  _OUTPUT_BUCKET_PATH:
+  _IMAGE_NAME: gcr.io/promoes/kong-api-gateway
+  _IMAGE_VERSION: 1.0.0
+  _GKE_CLUSTER: gke-cluster-1
+  _GKE_LOCATION: us-central1-c
+  _K8S_YAML_PATH: config
+  _K8S_APP_NAME: kong-api-gateway
+  _K8S_NAMESPACE: kong
+  _OUTPUT_BUCKET_PATH: gs://cloudbuild-config-bucket/kong-config
 options:
   substitution_option: 'ALLOW_LOOSE'
 tags: [$_K8S_APP_NAME']
