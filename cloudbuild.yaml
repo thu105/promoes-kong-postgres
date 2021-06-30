@@ -1,5 +1,16 @@
 steps:
 - name: 'gcr.io/cloud-builders/gke-deploy'
+  id: sed yaml secrets
+  entrypoint: bash
+  args:
+  - '-c'
+  - 'sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-deployment.yaml \
+    && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-job.yaml \
+	  && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-statefulSet.yaml'
+  args:
+  secretEnv:
+  - 'KONG_PG_PASSWORD'
+- name: 'gcr.io/cloud-builders/gke-deploy'
   id: 'Prepare deploy'
   args:
   - 'prepare'
@@ -10,14 +21,16 @@ steps:
   - '--namespace=$_K8S_NAMESPACE'
   - '--output=output'
   - '--annotation=gcb-build-id=$BUILD_ID'
-- name: 'gcr.io/cloud-builders/gke-deploy'
-  id: 'Apply deploy'
-  args:
-  - 'apply'
-  - '--filename=$_OUTPUT_BUCKET_PATH/expanded/*'
-  - '--namespace=$_K8S_NAMESPACE'
-  - '--cluster=$_GKE_CLUSTER'
-  - '--location=$_GKE_LOCATION'
+# - name: 'gcr.io/cloud-builders/gke-deploy'
+#   id: 'Apply deploy'
+#   args:
+#   - 'apply'
+#   - '--filename=$_OUTPUT_BUCKET_PATH/expanded/*'
+#   - '--namespace=$_K8S_NAMESPACE'
+#   - '--cluster=$_GKE_CLUSTER'
+#   - '--location=$_GKE_LOCATION'
+#   secretEnv:
+#   - 'KONG_PG_PASSWORD'
 images:
 - '$_IMAGE_NAME:$_IMAGE_VERSION'
 substitutions:
@@ -33,3 +46,8 @@ substitutions:
 options:
   substitution_option: 'ALLOW_LOOSE'
 tags: [$_K8S_APP_NAME']
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/promoes/secrets/kong-pg-password/versions/latest
+    env: 'KONG_PG_PASSWORD'
