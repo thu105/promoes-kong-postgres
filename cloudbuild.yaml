@@ -7,6 +7,13 @@ steps:
   - 'sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-deployment.yaml && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-job.yaml && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-statefulSet.yaml'
   secretEnv:
   - 'KONG_PG_PASSWORD'
+- name: 'gcr.io/cloud-builders/gke-deploy'
+  id: 'Check sed'
+  entrypoint: bash
+  args:
+  - '-c'
+  - 'cat config/kong-deployment.yaml && cat config/kong-job.yaml && cat config/kong-statefulSet.yaml'
+
 # - name: 'gcr.io/cloud-builders/gke-deploy'
 #   id: 'Prepare deploy'
 #   entrypoint: bash
