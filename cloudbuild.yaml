@@ -25,14 +25,14 @@ steps:
     --annotation=gcb-build-id=$BUILD_ID'
   secretEnv:
   - 'KONG_PG_PASSWORD'
-# - name: 'gcr.io/cloud-builders/gke-deploy'
-#   id: 'Apply deploy'
-#   args:
-#   - 'apply'
-#   - '--filename=$_OUTPUT_BUCKET_PATH/expanded/*'
-#   - '--namespace=$_K8S_NAMESPACE'
-#   - '--cluster=$_GKE_CLUSTER'
-#   - '--location=$_GKE_LOCATION'
+- name: 'gcr.io/cloud-builders/gke-deploy'
+  id: 'Apply deploy'
+  args:
+  - 'apply'
+  - '--filename=$_OUTPUT_BUCKET_PATH/expanded/*'
+  - '--namespace=$_K8S_NAMESPACE'
+  - '--cluster=$_GKE_CLUSTER'
+  - '--location=$_GKE_LOCATION'
 images:
 - '$_IMAGE_NAME:$_IMAGE_VERSION'
 substitutions:
