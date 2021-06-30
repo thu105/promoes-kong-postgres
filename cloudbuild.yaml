@@ -1,22 +1,32 @@
 steps:
 - name: 'gcr.io/cloud-builders/gke-deploy'
-  id: 'Prepare deploy'
+  id: 'Test sed'
   entrypoint: bash
   args:
   - '-c'
-  - 'sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-deployment.yaml \
+  - 'ls -all && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-deployment.yaml \
     && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-job.yaml \
-	  && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-statefulSet.yaml \
-    && gke-deploy prepare \
-    --filename=$_K8S_YAML_PATH \
-    --image=$_IMAGE_NAME:$_IMAGE_VERSION \
-    --app=$_K8S_APP_NAME \
-    --version=$_IMAGE_VERSION \
-    --namespace=$_K8S_NAMESPACE \
-    --output=output \
-    --annotation=gcb-build-id=$BUILD_ID'
+	  && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-statefulSet.yaml'
   secretEnv:
   - 'KONG_PG_PASSWORD'
+# - name: 'gcr.io/cloud-builders/gke-deploy'
+#   id: 'Prepare deploy'
+#   entrypoint: bash
+#   args:
+#   - '-c'
+#   - 'sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-deployment.yaml \
+#     && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-job.yaml \
+# 	  && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-statefulSet.yaml \
+#     && gke-deploy prepare \
+#     --filename=$_K8S_YAML_PATH \
+#     --image=$_IMAGE_NAME:$_IMAGE_VERSION \
+#     --app=$_K8S_APP_NAME \
+#     --version=$_IMAGE_VERSION \
+#     --namespace=$_K8S_NAMESPACE \
+#     --output=output \
+#     --annotation=gcb-build-id=$BUILD_ID'
+#   secretEnv:
+#   - 'KONG_PG_PASSWORD'
 # - name: 'gcr.io/cloud-builders/gke-deploy'
 #   id: 'Apply deploy'
 #   args:
@@ -25,8 +35,6 @@ steps:
 #   - '--namespace=$_K8S_NAMESPACE'
 #   - '--cluster=$_GKE_CLUSTER'
 #   - '--location=$_GKE_LOCATION'
-#   secretEnv:
-#   - 'KONG_PG_PASSWORD'
 images:
 - '$_IMAGE_NAME:$_IMAGE_VERSION'
 substitutions:
