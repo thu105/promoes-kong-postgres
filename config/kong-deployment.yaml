@@ -23,7 +23,7 @@ spec:
       containers:
       - env:
         - name: KONG_DATABASE
-          value: kong-postgres
+          value: kong
         - name: KONG_PG_HOST
           value: kong-postgres
         - name: KONG_PG_PASSWORD
