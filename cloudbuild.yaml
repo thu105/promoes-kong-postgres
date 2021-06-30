@@ -4,9 +4,7 @@ steps:
   entrypoint: bash
   args:
   - '-c'
-  - 'ls -all && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-deployment.yaml \
-    && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-job.yaml \
-	  && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" ./config/kong-statefulSet.yaml'
+  - 'sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-deployment.yaml && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-job.yaml && sed -i "s#@KONG_PG_PASSWORD@#$$KONG_PG_PASSWORD#g" config/kong-statefulSet.yaml'
   secretEnv:
   - 'KONG_PG_PASSWORD'
 # - name: 'gcr.io/cloud-builders/gke-deploy'
