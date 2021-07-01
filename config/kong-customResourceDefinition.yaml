@@ -12,6 +12,8 @@ spec:
   scope: Cluster
   versions:
   - name: v1
+    served: true
+    storage: true
     additionalPrinterColumns:
     - jsonPath: .plugin
       description: Name of the plugin
@@ -92,6 +94,8 @@ spec:
   scope: Namespaced
   versions:
   - name: v1
+    served: true
+    storage: true
     additionalPrinterColumns:
     - jsonPath: .username
       description: Username of a Kong Consumer
@@ -129,6 +133,8 @@ spec:
   scope: Namespaced
   versions:
   - name: v1
+    served: true
+    storage: true
     subresources:
       status: {}
     schema:
@@ -330,6 +336,8 @@ spec:
   scope: Namespaced
   versions:
   - name: v1
+    served: true
+    storage: true
     additionalPrinterColumns:
     - jsonPath: .plugin
       description: Name of the plugin
@@ -405,6 +413,8 @@ spec:
   scope: Namespaced
   versions:
   - name: v1beta1
+    served: true
+    storage: true
     additionalPrinterColumns:
     - jsonPath: .status.loadBalancer.ingress[*].ip
       description: Address of the load balancer
