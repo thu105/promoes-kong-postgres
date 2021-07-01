@@ -13,20 +13,20 @@ spec:
   versions:
   - name: v1
     additionalPrinterColumns:
-    - JSONPath: .plugin
+    - jsonPath: .plugin
       description: Name of the plugin
       name: Plugin-Type
       type: string
-    - JSONPath: .metadata.creationTimestamp
+    - jsonPath: .metadata.creationTimestamp
       description: Age
       name: Age
       type: date
-    - JSONPath: .disabled
+    - jsonPath: .disabled
       description: Indicates if the plugin is disabled
       name: Disabled
       priority: 1
       type: boolean
-    - JSONPath: .config
+    - jsonPath: .config
       description: Configuration of the plugin
       name: Config
       priority: 1
@@ -93,11 +93,11 @@ spec:
   versions:
   - name: v1
     additionalPrinterColumns:
-    - JSONPath: .username
+    - jsonPath: .username
       description: Username of a Kong Consumer
       name: Username
       type: string
-    - JSONPath: .metadata.creationTimestamp
+    - jsonPath: .metadata.creationTimestamp
       description: Age
       name: Age
       type: date
@@ -331,20 +331,20 @@ spec:
   versions:
   - name: v1
     additionalPrinterColumns:
-    - JSONPath: .plugin
+    - jsonPath: .plugin
       description: Name of the plugin
       name: Plugin-Type
       type: string
-    - JSONPath: .metadata.creationTimestamp
+    - jsonPath: .metadata.creationTimestamp
       description: Age
       name: Age
       type: date
-    - JSONPath: .disabled
+    - jsonPath: .disabled
       description: Indicates if the plugin is disabled
       name: Disabled
       priority: 1
       type: boolean
-    - JSONPath: .config
+    - jsonPath: .config
       description: Configuration of the plugin
       name: Config
       priority: 1
@@ -406,11 +406,11 @@ spec:
   versions:
   - name: v1beta1
     additionalPrinterColumns:
-    - JSONPath: .status.loadBalancer.ingress[*].ip
+    - jsonPath: .status.loadBalancer.ingress[*].ip
       description: Address of the load balancer
       name: Address
       type: string
-    - JSONPath: .metadata.creationTimestamp
+    - jsonPath: .metadata.creationTimestamp
       description: Age
       name: Age
       type: date
