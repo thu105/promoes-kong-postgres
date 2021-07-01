@@ -171,6 +171,7 @@ spec:
                 type: integer
             type: object
           route:
+            type: object
             properties:
               headers:
                 additionalProperties:
