@@ -35,6 +35,7 @@ spec:
       type: string
     schema:
       openAPIV3Schema:
+        type: object
         properties:
           config:
             type: object
@@ -109,6 +110,7 @@ spec:
       status: {}
     schema:
       openAPIV3Schema:
+        type: object
         properties:
           credentials:
             items:
@@ -139,6 +141,7 @@ spec:
       status: {}
     schema:
       openAPIV3Schema:
+        type: object
         properties:
           proxy:
             properties:
@@ -361,6 +364,7 @@ spec:
       status: {}
     schema:
       openAPIV3Schema:
+        type: object
         properties:
           config:
             type: object
@@ -428,6 +432,7 @@ spec:
       status: {}
     schema:
       openAPIV3Schema:
+        type: object
         properties:
           apiVersion:
             type: string
